@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:spotify_clone/core/utils/trl.dart';
+import 'package:spotify_clone/features/onboarding/get_started/get_started_view.dart';
+import 'package:spotify_clone/features/onboarding/splash_screen/splash_screen_view.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -7,7 +9,6 @@ void main() async {
   runApp(const MyApp());
 }
 
-/// Test
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
 
@@ -22,10 +23,39 @@ class MyApp extends StatelessWidget {
             colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
             useMaterial3: true,
           ),
-          home: MyHomePage(title: trl('home_page_title')),
+          home: const SplashScreenWrapper(),
         );
       },
     );
+  }
+}
+
+/// Zeigt zuerst den SplashScreen, danach die MyHomePage
+class SplashScreenWrapper extends StatefulWidget {
+  const SplashScreenWrapper({super.key});
+
+  @override
+  State<SplashScreenWrapper> createState() => _SplashScreenWrapperState();
+}
+
+class _SplashScreenWrapperState extends State<SplashScreenWrapper> {
+  @override
+  void initState() {
+    super.initState();
+    Future.delayed(const Duration(seconds: 2), () {
+      if (!mounted) return;
+
+      Navigator.of(context).pushReplacement(
+        MaterialPageRoute(
+          builder: (_) => const GetStartedView(),
+        ),
+      );
+    });
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return const SplashScreenView();
   }
 }
 
