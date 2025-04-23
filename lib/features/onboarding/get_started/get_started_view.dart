@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:spotify_clone/core/constants/constants.dart';
+import 'package:spotify_clone/features/onboarding/choose_mode/choose_mode_view.dart';
 
 class GetStartedView extends StatelessWidget {
   const GetStartedView({super.key});
@@ -17,14 +18,6 @@ class GetStartedView extends StatelessWidget {
             'assets/cover/start_screen.png',
             fit: BoxFit.cover,
           )),
-          // Overlay
-          Positioned.fill(
-            child: Container(
-              color: Colors.black.withOpacity(0.2),
-            ),
-          ),
-          // Content
-          // Content
           Padding(
             padding: const EdgeInsets.all(32.0),
             child: Column(
@@ -52,7 +45,13 @@ class GetStartedView extends StatelessWidget {
                 SizedBox(
                   width: double.infinity,
                   child: ElevatedButton(
-                    onPressed: () {},
+                    onPressed: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => const ChooseModeView()),
+                      );
+                    },
                     style: ElevatedButton.styleFrom(
                       backgroundColor: AppColors.primaryGreen,
                       shape: RoundedRectangleBorder(

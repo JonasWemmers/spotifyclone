@@ -1,8 +1,23 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/svg.dart';
+import 'package:go_router/go_router.dart';
 import 'package:spotify_clone/core/constants/constants.dart';
 
-class ChooseModeView extends StatelessWidget {
+class ChooseModeView extends StatefulWidget {
   const ChooseModeView({super.key});
+
+  @override
+  State<ChooseModeView> createState() => _ChooseModeViewState();
+}
+
+class _ChooseModeViewState extends State<ChooseModeView> {
+  bool isDarkModeSelected = true;
+
+  void _selectMode(bool isDark) {
+    setState(() {
+      isDarkModeSelected = isDark;
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -12,37 +27,48 @@ class ChooseModeView extends StatelessWidget {
         children: [
           Positioned.fill(
             child: Image.asset(
-              'assets/images/onboarding_2.png',
+              'assets/cover/start_screen_2.png',
               fit: BoxFit.cover,
             ),
-          ),
-          Positioned.fill(
-            child: Container(color: Colors.black.withOpacity(0.5)),
           ),
           Padding(
             padding: const EdgeInsets.all(32.0),
             child: Column(
               mainAxisAlignment: MainAxisAlignment.end,
               children: [
+                const SizedBox(height: 64),
+                Center(
+                  child: SvgPicture.asset(
+                    'assets/logos/logo_spotify.svg',
+                    height: 60,
+                  ),
+                ),
+                const Spacer(),
                 const Text(
                   'Choose Mode',
                   style: AppTextStyles.headline,
                   textAlign: TextAlign.center,
                 ),
                 const SizedBox(height: 24),
-                const Row(
+                Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    _ModeButton(
-                      icon: Icons.dark_mode,
-                      label: 'Dark Mode',
-                      isSelected: true,
+                    GestureDetector(
+                      onTap: () => _selectMode(true),
+                      child: _ModeButton(
+                        icon: Icons.dark_mode,
+                        label: 'Dark Mode',
+                        isSelected: isDarkModeSelected,
+                      ),
                     ),
-                    SizedBox(width: 24),
-                    _ModeButton(
-                      icon: Icons.light_mode,
-                      label: 'Light Mode',
-                      isSelected: false,
+                    const SizedBox(width: 24),
+                    GestureDetector(
+                      onTap: () => _selectMode(false),
+                      child: _ModeButton(
+                        icon: Icons.light_mode,
+                        label: 'Light Mode',
+                        isSelected: !isDarkModeSelected,
+                      ),
                     ),
                   ],
                 ),
@@ -51,7 +77,10 @@ class ChooseModeView extends StatelessWidget {
                   width: double.infinity,
                   child: ElevatedButton(
                     onPressed: () {
-                      // Handle theme selection
+                      final selectedMode =
+                          isDarkModeSelected ? 'Dark' : 'Light';
+                      debugPrint('Selected Mode: $selectedMode');
+                      context.go('/login-register');
                     },
                     style: ElevatedButton.styleFrom(
                       backgroundColor: AppColors.primaryGreen,
@@ -97,7 +126,13 @@ class _ModeButton extends StatelessWidget {
           child: Icon(icon, color: Colors.white),
         ),
         const SizedBox(height: 8),
-        Text(label, style: AppTextStyles.subtitle),
+        Text(
+          label,
+          style: AppTextStyles.subtitle.copyWith(
+            color: isSelected ? AppColors.primaryGreen : Colors.white,
+            fontWeight: isSelected ? FontWeight.bold : FontWeight.normal,
+          ),
+        ),
       ],
     );
   }

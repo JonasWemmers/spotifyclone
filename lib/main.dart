@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:spotify_clone/core/utils/trl.dart';
+import 'package:spotify_clone/features/auth/login/login.dart';
 import 'package:spotify_clone/features/onboarding/get_started/get_started_view.dart';
+import 'package:spotify_clone/features/onboarding/choose_mode/choose_mode_view.dart';
 import 'package:spotify_clone/features/onboarding/splash_screen/splash_screen_view.dart';
 
 void main() async {
@@ -9,28 +12,28 @@ void main() async {
   runApp(const MyApp());
 }
 
-class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+final _router = GoRouter(
+  initialLocation: '/splash',
+  routes: [
+    GoRoute(
+      path: '/splash',
+      builder: (context, state) => const SplashScreenWrapper(),
+    ),
+    GoRoute(
+      path: '/get-started',
+      builder: (context, state) => const GetStartedView(),
+    ),
+    GoRoute(
+      path: '/choose-mode',
+      builder: (context, state) => const ChooseModeView(),
+    ),
+    GoRoute(
+      path: '/login-register',
+      builder: (context, state) => const LoginScreen(),
+    ),
+  ],
+);
 
-  @override
-  Widget build(BuildContext context) {
-    return ValueListenableBuilder(
-      valueListenable: currentLanguage,
-      builder: (context, lang, _) {
-        return MaterialApp(
-          title: trl('title'),
-          theme: ThemeData(
-            colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
-            useMaterial3: true,
-          ),
-          home: const SplashScreenWrapper(),
-        );
-      },
-    );
-  }
-}
-
-/// Zeigt zuerst den SplashScreen, danach die MyHomePage
 class SplashScreenWrapper extends StatefulWidget {
   const SplashScreenWrapper({super.key});
 
@@ -44,12 +47,7 @@ class _SplashScreenWrapperState extends State<SplashScreenWrapper> {
     super.initState();
     Future.delayed(const Duration(seconds: 2), () {
       if (!mounted) return;
-
-      Navigator.of(context).pushReplacement(
-        MaterialPageRoute(
-          builder: (_) => const GetStartedView(),
-        ),
-      );
+      context.go('/get-started');
     });
   }
 
@@ -59,55 +57,24 @@ class _SplashScreenWrapperState extends State<SplashScreenWrapper> {
   }
 }
 
-class MyHomePage extends StatefulWidget {
-  final String title;
-  const MyHomePage({super.key, required this.title});
 
-  @override
-  State<MyHomePage> createState() => _MyHomePageState();
-}
-
-class _MyHomePageState extends State<MyHomePage> {
-  int _counter = 0;
-
-  void _incrementCounter() => setState(() => _counter++);
-
-  void _switchLanguage() async {
-    final newLang = currentLanguage.value == 'de' ? 'en' : 'de';
-    await loadTranslations(newLang);
-  }
+class MyApp extends StatelessWidget {
+  const MyApp({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text(widget.title),
-        backgroundColor: Theme.of(context).colorScheme.inversePrimary,
-        actions: [
-          IconButton(
-            icon: const Icon(Icons.language),
-            onPressed: _switchLanguage,
-            tooltip: 'Switch Language',
+    return ValueListenableBuilder(
+      valueListenable: currentLanguage,
+      builder: (context, lang, _) {
+        return MaterialApp.router(
+          routerConfig: _router,
+          title: trl('title'),
+          theme: ThemeData(
+            colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
+            useMaterial3: true,
           ),
-        ],
-      ),
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            Text(trl('counter_info')),
-            Text(
-              '$_counter',
-              style: Theme.of(context).textTheme.headlineMedium,
-            ),
-          ],
-        ),
-      ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: _incrementCounter,
-        tooltip: trl('button_tooltip'),
-        child: const Icon(Icons.add),
-      ),
+        );
+      },
     );
   }
 }
