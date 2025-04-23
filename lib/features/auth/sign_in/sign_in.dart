@@ -3,8 +3,8 @@ import 'package:flutter_svg/svg.dart';
 import 'package:spotify_clone/core/constants/constants.dart';
 import 'package:spotify_clone/features/auth/widgets/shared_auth_widgets.dart';
 
-class RegisterScreen extends StatelessWidget {
-  const RegisterScreen({super.key});
+class SignInScreen extends StatelessWidget {
+  const SignInScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -24,7 +24,7 @@ class RegisterScreen extends StatelessWidget {
               const SizedBox(height: 24),
               const Center(
                 child: Text(
-                  'Register',
+                  'Sign In',
                   style: TextStyle(
                     color: AppColors.textPrimary,
                     fontSize: 24,
@@ -48,13 +48,16 @@ class RegisterScreen extends StatelessWidget {
                 ),
               ),
               const SizedBox(height: 32),
-              const InputField(hint: 'Full Name'),
-              const SizedBox(height: 16),
-              const InputField(hint: 'Enter Email'),
+              const InputField(hint: 'Enter Username Or Email'),
               const SizedBox(height: 16),
               const InputField(hint: 'Password', obscureText: true),
+              const SizedBox(height: 12),
+              const Text(
+                'Recovery Password',
+                style: TextStyle(color: AppColors.textSecondary),
+              ),
               const SizedBox(height: 24),
-              const GreenButton(text: 'Creat Account'),
+              const GreenButton(text: 'Sign In'),
               const SizedBox(height: 16),
               const DividerWithText(),
               const SizedBox(height: 16),
@@ -63,11 +66,11 @@ class RegisterScreen extends StatelessWidget {
               const Center(
                 child: Text.rich(
                   TextSpan(
-                    text: 'Do You Have An Account? ',
+                    text: 'Not A Member ? ',
                     style: TextStyle(color: AppColors.textSecondary),
                     children: [
                       TextSpan(
-                        text: 'Sign In',
+                        text: 'Register Now',
                         style: TextStyle(color: AppColors.linkBlue),
                       ),
                     ],

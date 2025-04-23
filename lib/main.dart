@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:spotify_clone/core/utils/trl.dart';
 import 'package:spotify_clone/features/auth/login/login.dart';
+import 'package:spotify_clone/features/auth/register/register.dart';
+import 'package:spotify_clone/features/auth/sign_in/sign_in.dart';
 import 'package:spotify_clone/features/onboarding/get_started/get_started_view.dart';
 import 'package:spotify_clone/features/onboarding/choose_mode/choose_mode_view.dart';
 import 'package:spotify_clone/features/onboarding/splash_screen/splash_screen_view.dart';
@@ -30,6 +32,14 @@ final _router = GoRouter(
     GoRoute(
       path: '/login-register',
       builder: (context, state) => const LoginScreen(),
+    ),
+    GoRoute(
+      path: '/sign-in',
+      builder: (context, state) => const SignInScreen(),
+    ),
+    GoRoute(
+      path: '/register',
+      builder: (context, state) => const RegisterScreen(),
     ),
   ],
 );

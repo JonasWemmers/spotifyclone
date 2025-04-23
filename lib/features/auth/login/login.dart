@@ -12,7 +12,6 @@ class LoginScreen extends StatelessWidget {
       backgroundColor: AppColors.background,
       body: Stack(
         children: [
-          // Oben rechts: Vektor Grafik
           Positioned(
             top: 0,
             right: 0,
@@ -80,7 +79,7 @@ class LoginScreen extends StatelessWidget {
                       children: [
                         ElevatedButton(
                           onPressed: () {
-                            // TODO: Navigate to Register screen
+                            context.go('/register');
                           },
                           style: ElevatedButton.styleFrom(
                             backgroundColor: AppColors.primaryGreen,
@@ -98,7 +97,7 @@ class LoginScreen extends StatelessWidget {
                         const SizedBox(width: 24),
                         TextButton(
                           onPressed: () {
-                            // TODO: Navigate to Sign in screen
+                            context.go('/sign-in');
                           },
                           child: const Text(
                             'Sign in',
