@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:go_router/go_router.dart';
 import 'package:spotify_clone/core/constants/constants.dart';
+import 'package:spotify_clone/core/utils/trl.dart'; // oder wo auch immer trl() definiert ist
 
 class LoginScreen extends StatelessWidget {
   const LoginScreen({super.key});
@@ -62,14 +63,14 @@ class LoginScreen extends StatelessWidget {
                       height: 48,
                     ),
                     const SizedBox(height: 48),
-                    const Text(
-                      'Enjoy Listening To Music',
+                    Text(
+                      trl('login.headline'),
                       style: AppTextStyles.headline,
                       textAlign: TextAlign.center,
                     ),
                     const SizedBox(height: 16),
-                    const Text(
-                      'Spotify is a proprietary Swedish audio\nstreaming and media services provider',
+                    Text(
+                      trl('login.subtitle'),
                       style: AppTextStyles.subtitle,
                       textAlign: TextAlign.center,
                     ),
@@ -87,10 +88,10 @@ class LoginScreen extends StatelessWidget {
                               borderRadius: BorderRadius.circular(30),
                             ),
                             padding: const EdgeInsets.symmetric(
-                                horizontal: 32, vertical: 16),
+                                horizontal: 24, vertical: 16),
                           ),
-                          child: const Text(
-                            'Register',
+                          child: Text(
+                            trl('login.register'),
                             style: AppTextStyles.button,
                           ),
                         ),
@@ -99,8 +100,8 @@ class LoginScreen extends StatelessWidget {
                           onPressed: () {
                             context.go('/sign-in');
                           },
-                          child: const Text(
-                            'Sign in',
+                          child: Text(
+                            trl('login.sign_in'),
                             style: AppTextStyles.button,
                           ),
                         ),

@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/svg.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:spotify_clone/core/constants/constants.dart';
 import 'package:spotify_clone/features/auth/widgets/shared_auth_widgets.dart';
+import 'package:spotify_clone/core/utils/trl.dart'; // Importiere hier trl()
 
 class RegisterScreen extends StatelessWidget {
   const RegisterScreen({super.key});
@@ -22,10 +23,10 @@ class RegisterScreen extends StatelessWidget {
                 child: SvgPicture.asset('assets/logos/logo_spotify.svg'),
               ),
               const SizedBox(height: 24),
-              const Center(
+              Center(
                 child: Text(
-                  'Register',
-                  style: TextStyle(
+                  trl('register.headline'), // Übersetzung des Titels
+                  style: const TextStyle(
                     color: AppColors.textPrimary,
                     fontSize: 24,
                     fontWeight: FontWeight.bold,
@@ -33,15 +34,15 @@ class RegisterScreen extends StatelessWidget {
                 ),
               ),
               const SizedBox(height: 8),
-              const Center(
+              Center(
                 child: Text.rich(
                   TextSpan(
-                    text: 'If You Need Any Support ',
-                    style: TextStyle(color: AppColors.textSecondary),
+                    text: trl('register.subtitle_1'), // Übersetzung der ersten Zeile
+                    style: const TextStyle(color: AppColors.textSecondary),
                     children: [
                       TextSpan(
-                        text: 'Click Here',
-                        style: TextStyle(color: AppColors.linkBlue),
+                        text: trl('register.subtitle_2'), // Übersetzung des Links
+                        style: const TextStyle(color: AppColors.linkBlue),
                       ),
                     ],
                   ),
@@ -54,21 +55,21 @@ class RegisterScreen extends StatelessWidget {
               const SizedBox(height: 16),
               const InputField(hint: 'Password', obscureText: true),
               const SizedBox(height: 24),
-              const GreenButton(text: 'Creat Account'),
+              GreenButton(text: trl('register.headline')),
               const SizedBox(height: 16),
               const DividerWithText(),
               const SizedBox(height: 16),
               const LoginIcons(),
               const SizedBox(height: 16),
-              const Center(
+              Center(
                 child: Text.rich(
                   TextSpan(
-                    text: 'Do You Have An Account? ',
-                    style: TextStyle(color: AppColors.textSecondary),
+                    text: trl('register.have_account'), // Übersetzung von "Do you have an account?"
+                    style: const TextStyle(color: AppColors.textSecondary),
                     children: [
                       TextSpan(
-                        text: 'Sign In',
-                        style: TextStyle(color: AppColors.linkBlue),
+                        text: trl('register.sign_in'), // Übersetzung des "Sign In" Links
+                        style: const TextStyle(color: AppColors.linkBlue),
                       ),
                     ],
                   ),

@@ -1,7 +1,28 @@
 {
-    "title": "Flutter Demo",
-    "home_page_title": "Flutter Demo Home Page",
-    "button_tooltip": "Erhöhen",
-    "counter_info": "Du hast den Button so oft gedrückt:"
-  }
-  
+  "login": {
+    "headline": "Genieße das Musikhören",
+    "subtitle": "Spotify ist ein schwedischer Anbieter für\nAudio-Streaming und Mediendienste",
+    "register": "Registrieren",
+    "sign_in": "Anmelden"
+  },
+  "get_started": {
+    "headline": "Genieße das Musikhören",
+    "subtitle": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sagittis enim purus sed phasellus.",
+    "button": "Loslegen"
+  },
+  "sign_in": {
+    "headline": "Anmelden",
+    "subtitle_1": "Wenn du Unterstützung benötigst",
+    "subtitle_2": "Klicke hier",
+    "recovery_password": "Passwort Wiederherstellen",
+    "not_a_member": "Kein Mitglied?",
+    "register_now": "Jetzt Registrieren"
+  },
+    "register": {
+      "headline": "Registrieren",
+      "subtitle_1": "Wenn du Unterstützung benötigst",
+      "subtitle_2": "Klicke hier",
+      "have_account": "Hast du ein Konto?",
+      "sign_in": "Anmelden"
+    }  
+}

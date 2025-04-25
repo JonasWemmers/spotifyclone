@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:spotify_clone/core/constants/constants.dart';
+import 'package:spotify_clone/core/utils/trl.dart';
 import 'package:spotify_clone/features/onboarding/choose_mode/choose_mode_view.dart';
 
 class GetStartedView extends StatelessWidget {
@@ -14,10 +15,11 @@ class GetStartedView extends StatelessWidget {
         children: [
           // Background image
           Positioned.fill(
-              child: Image.asset(
-            'assets/cover/start_screen.png',
-            fit: BoxFit.cover,
-          )),
+            child: Image.asset(
+              'assets/cover/start_screen.png',
+              fit: BoxFit.cover,
+            ),
+          ),
           Padding(
             padding: const EdgeInsets.all(32.0),
             child: Column(
@@ -30,14 +32,14 @@ class GetStartedView extends StatelessWidget {
                   ),
                 ),
                 const Spacer(),
-                const Text(
-                  'Enjoy Listening To Music',
+                Text(
+                  trl('get_started.headline'),
                   style: AppTextStyles.headline,
                   textAlign: TextAlign.center,
                 ),
                 const SizedBox(height: 16),
-                const Text(
-                  'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sagittis enim purus sed phasellus.',
+                Text(
+                  trl('get_started.subtitle'),
                   style: AppTextStyles.subtitle,
                   textAlign: TextAlign.center,
                 ),
@@ -49,7 +51,8 @@ class GetStartedView extends StatelessWidget {
                       Navigator.push(
                         context,
                         MaterialPageRoute(
-                            builder: (context) => const ChooseModeView()),
+                          builder: (context) => const ChooseModeView(),
+                        ),
                       );
                     },
                     style: ElevatedButton.styleFrom(
@@ -59,8 +62,8 @@ class GetStartedView extends StatelessWidget {
                       ),
                       padding: const EdgeInsets.symmetric(vertical: 18),
                     ),
-                    child: const Text(
-                      'Get Started',
+                    child: Text(
+                      trl('get_started.button'),
                       style: AppTextStyles.button,
                     ),
                   ),

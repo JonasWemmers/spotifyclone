@@ -10,7 +10,7 @@ import 'package:spotify_clone/features/onboarding/splash_screen/splash_screen_vi
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  await loadTranslations('de');
+  await loadTranslations('en');
   runApp(const MyApp());
 }
 
