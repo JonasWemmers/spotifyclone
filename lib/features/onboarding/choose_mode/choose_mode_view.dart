@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/svg.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:go_router/go_router.dart';
 import 'package:spotify_clone/core/constants/constants.dart';
+import 'package:spotify_clone/core/utils/trl.dart'; // <- Import für trl hinzugefügt
 
 class ChooseModeView extends StatefulWidget {
   const ChooseModeView({super.key});
@@ -44,8 +45,8 @@ class _ChooseModeViewState extends State<ChooseModeView> {
                   ),
                 ),
                 const Spacer(),
-                const Text(
-                  'Choose Mode',
+                Text(
+                  trl('choose_mode.choose_mode_title'),
                   style: AppTextStyles.headline,
                   textAlign: TextAlign.center,
                 ),
@@ -57,7 +58,7 @@ class _ChooseModeViewState extends State<ChooseModeView> {
                       onTap: () => _selectMode(true),
                       child: _ModeButton(
                         icon: Icons.dark_mode,
-                        label: 'Dark Mode',
+                        label: trl('choose_mode.dark_mode'),
                         isSelected: isDarkModeSelected,
                       ),
                     ),
@@ -66,7 +67,7 @@ class _ChooseModeViewState extends State<ChooseModeView> {
                       onTap: () => _selectMode(false),
                       child: _ModeButton(
                         icon: Icons.light_mode,
-                        label: 'Light Mode',
+                        label: trl('choose_mode.light_mode'),
                         isSelected: !isDarkModeSelected,
                       ),
                     ),
@@ -89,8 +90,8 @@ class _ChooseModeViewState extends State<ChooseModeView> {
                       ),
                       padding: const EdgeInsets.symmetric(vertical: 18),
                     ),
-                    child: const Text(
-                      'Continue',
+                    child: Text(
+                      trl('choose_mode.continue'),
                       style: AppTextStyles.button,
                     ),
                   ),

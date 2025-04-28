@@ -24,5 +24,11 @@
         "subtitle_2": "Click Here",
         "have_account": "Do You Have An Account?",
         "sign_in": "Sign In"
-      }
+      },
+      "choose_mode": {
+        "choose_mode_title": "Choose Mode",
+        "dark_mode": "Dark Mode",
+        "light_mode": "Light Mode",
+        "continue": "Continue"
+      }      
 }

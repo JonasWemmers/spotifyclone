@@ -24,5 +24,11 @@
       "subtitle_2": "Klicke hier",
       "have_account": "Hast du ein Konto?",
       "sign_in": "Anmelden"
-    }  
+    },
+    "choose_mode": {
+      "choose_mode_title": "Modus auswählen",
+      "dark_mode": "Dunkler Modus",
+      "light_mode": "Heller Modus",
+      "continue": "Weiter"
+    }    
 }
