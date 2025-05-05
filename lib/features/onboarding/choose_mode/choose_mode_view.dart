@@ -81,7 +81,7 @@ class _ChooseModeViewState extends State<ChooseModeView> {
                       final selectedMode =
                           isDarkModeSelected ? 'Dark' : 'Light';
                       debugPrint('Selected Mode: $selectedMode');
-                      context.go('/login-register');
+                      context.push('/login-register');
                     },
                     style: ElevatedButton.styleFrom(
                       backgroundColor: AppColors.primaryGreen,

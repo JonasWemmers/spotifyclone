@@ -2,10 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:go_router/go_router.dart';
 import 'package:spotify_clone/core/constants/constants.dart';
-import 'package:spotify_clone/core/utils/trl.dart'; // oder wo auch immer trl() definiert ist
+import 'package:spotify_clone/core/utils/trl.dart';
 
-class LoginScreen extends StatelessWidget {
-  const LoginScreen({super.key});
+class LoginRegisterScreen extends StatelessWidget {
+  const LoginRegisterScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -49,11 +49,7 @@ class LoginScreen extends StatelessWidget {
                         icon: const Icon(Icons.arrow_back_ios,
                             color: Colors.white),
                         onPressed: () {
-                          if (Navigator.canPop(context)) {
-                            Navigator.pop(context);
-                          } else {
-                            context.go('/choose-mode');
-                          }
+                          context.pop();
                         },
                       ),
                     ),
@@ -80,7 +76,7 @@ class LoginScreen extends StatelessWidget {
                       children: [
                         ElevatedButton(
                           onPressed: () {
-                            context.go('/register');
+                            context.push('/register'); 
                           },
                           style: ElevatedButton.styleFrom(
                             backgroundColor: AppColors.primaryGreen,
@@ -98,7 +94,7 @@ class LoginScreen extends StatelessWidget {
                         const SizedBox(width: 24),
                         TextButton(
                           onPressed: () {
-                            context.go('/sign-in');
+                            context.push('/sign-in'); 
                           },
                           child: Text(
                             trl('login.sign_in'),

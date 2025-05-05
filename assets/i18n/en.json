@@ -10,25 +10,33 @@
     "subtitle": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sagittis enim purus sed phasellus.",
     "button": "Get Started"
   },
-    "sign_in": {
-      "headline": "Sign In",
-      "subtitle_1": "If You Need Any Support",
-      "subtitle_2": "Click Here",
-      "recovery_password": "Recovery Password",
-      "not_a_member": "Not A Member?",
-      "register_now": "Register Now"
-    },
-      "register": {
-        "headline": "Register",
-        "subtitle_1": "If You Need Any Support",
-        "subtitle_2": "Click Here",
-        "have_account": "Do You Have An Account?",
-        "sign_in": "Sign In"
-      },
-      "choose_mode": {
-        "choose_mode_title": "Choose Mode",
-        "dark_mode": "Dark Mode",
-        "light_mode": "Light Mode",
-        "continue": "Continue"
-      }      
+  "sign_in": {
+    "headline": "Sign In",
+    "subtitle_1": "If You Need Any Support",
+    "subtitle_2": "Click Here",
+    "recovery_password": "Recovery Password",
+    "not_a_member": "Not A Member?",
+    "register_now": "Register Now"
+  },
+  "register": {
+    "headline": "Register",
+    "subtitle_1": "If You Need Any Support",
+    "subtitle_2": "Click Here",
+    "have_account": "Do You Have An Account?",
+    "sign_in": "Sign In"
+  },
+  "choose_mode": {
+    "choose_mode_title": "Choose Mode",
+    "dark_mode": "Dark Mode",
+    "light_mode": "Light Mode",
+    "continue": "Continue"
+  },
+  "forgot_password": {
+    "headline": "Forgot Password",
+    "subtitle": "Enter your email address to reset your password",
+    "instructions": "You will receive an email with further instructions",
+    "submit": "Submit",
+    "back_to_sign_in": "Back to",
+    "sign_in": " Sign In"
+  }
 }

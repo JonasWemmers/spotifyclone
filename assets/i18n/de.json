@@ -18,17 +18,25 @@
     "not_a_member": "Kein Mitglied?",
     "register_now": "Jetzt Registrieren"
   },
-    "register": {
-      "headline": "Registrieren",
-      "subtitle_1": "Wenn du Unterstützung benötigst",
-      "subtitle_2": "Klicke hier",
-      "have_account": "Hast du ein Konto?",
-      "sign_in": "Anmelden"
-    },
-    "choose_mode": {
-      "choose_mode_title": "Modus auswählen",
-      "dark_mode": "Dunkler Modus",
-      "light_mode": "Heller Modus",
-      "continue": "Weiter"
-    }    
+  "register": {
+    "headline": "Registrieren",
+    "subtitle_1": "Wenn du Unterstützung benötigst",
+    "subtitle_2": "Klicke hier",
+    "have_account": "Hast du ein Konto?",
+    "sign_in": "Anmelden"
+  },
+  "choose_mode": {
+    "choose_mode_title": "Modus auswählen",
+    "dark_mode": "Dunkler Modus",
+    "light_mode": "Heller Modus",
+    "continue": "Weiter"
+  },
+  "forgot_password": {
+    "headline": "Passwort vergessen",
+    "subtitle": "Gib deine E-Mail-Adresse ein, um dein Passwort zurückzusetzen",
+    "instructions": "Du erhältst eine E-Mail mit weiteren Anweisungen",
+    "submit": "Absenden",
+    "back_to_sign_in": "Zurück zum",
+    "sign_in": " Anmelden"
+  }
 }

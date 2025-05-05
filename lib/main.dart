@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:spotify_clone/core/utils/trl.dart';
-import 'package:spotify_clone/features/auth/login/login.dart';
+import 'package:spotify_clone/features/auth/forgot_password/forgot_password.dart';
+import 'package:spotify_clone/features/auth/login_register/login_register.dart';
 import 'package:spotify_clone/features/auth/register/register.dart';
 import 'package:spotify_clone/features/auth/sign_in/sign_in.dart';
 import 'package:spotify_clone/features/onboarding/get_started/get_started_view.dart';
@@ -10,7 +11,7 @@ import 'package:spotify_clone/features/onboarding/splash_screen/splash_screen_vi
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  await loadTranslations('en');
+  await loadTranslations('de');
   runApp(const MyApp());
 }
 
@@ -31,7 +32,7 @@ final _router = GoRouter(
     ),
     GoRoute(
       path: '/login-register',
-      builder: (context, state) => const LoginScreen(),
+      builder: (context, state) => const LoginRegisterScreen(),
     ),
     GoRoute(
       path: '/sign-in',
@@ -41,6 +42,9 @@ final _router = GoRouter(
       path: '/register',
       builder: (context, state) => const RegisterScreen(),
     ),
+    GoRoute(
+        path: '/forgot-password',
+        builder: (context, state) => const ForgotPasswordScreen())
   ],
 );
 
@@ -66,7 +70,6 @@ class _SplashScreenWrapperState extends State<SplashScreenWrapper> {
     return const SplashScreenView();
   }
 }
-
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});

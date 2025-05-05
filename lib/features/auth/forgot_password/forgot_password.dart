@@ -3,17 +3,17 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:go_router/go_router.dart';
 import 'package:spotify_clone/core/constants/constants.dart';
-import 'package:spotify_clone/features/auth/widgets/shared_auth_widgets.dart';
 import 'package:spotify_clone/core/utils/trl.dart';
+import 'package:spotify_clone/features/auth/widgets/shared_auth_widgets.dart'; // oder wo auch immer trl() definiert ist
 
-class SignInScreen extends StatefulWidget {
-  const SignInScreen({super.key});
+class ForgotPasswordScreen extends StatefulWidget {
+  const ForgotPasswordScreen({super.key});
 
   @override
-  State<SignInScreen> createState() => _SignInScreenState();
+  State<ForgotPasswordScreen> createState() => _ForgotPasswordScreenState();
 }
 
-class _SignInScreenState extends State<SignInScreen> {
+class _ForgotPasswordScreenState extends State<ForgotPasswordScreen> {
   late TapGestureRecognizer _tapRecognizer;
 
   @override
@@ -21,7 +21,7 @@ class _SignInScreenState extends State<SignInScreen> {
     super.initState();
     _tapRecognizer = TapGestureRecognizer()
       ..onTap = () {
-        context.go('/register');
+        context.go('/sign-in');
       };
   }
 
@@ -58,7 +58,7 @@ class _SignInScreenState extends State<SignInScreen> {
               const SizedBox(height: 24),
               Center(
                 child: Text(
-                  trl('sign_in.headline'),
+                  trl('forgot_password.headline'),
                   style: const TextStyle(
                     color: AppColors.textPrimary,
                     fontSize: 24,
@@ -68,39 +68,20 @@ class _SignInScreenState extends State<SignInScreen> {
               ),
               const SizedBox(height: 8),
               Center(
-                child: Text.rich(
-                  TextSpan(
-                    text: trl('sign_in.subtitle_1'),
-                    style: const TextStyle(color: AppColors.textSecondary),
-                    children: [
-                      TextSpan(
-                        text: trl('sign_in.subtitle_2'),
-                        style: const TextStyle(color: AppColors.linkBlue),
-                      ),
-                    ],
-                  ),
+                child: Text(
+                  trl('forgot_password.subtitle'),
+                  style: const TextStyle(color: AppColors.textSecondary),
                 ),
               ),
               const SizedBox(height: 32),
-              const InputField(hint: 'Enter Username Or Email'),
+              const InputField(hint: 'Enter Email'),
               const SizedBox(height: 16),
-              const InputField(hint: 'Password', obscureText: true),
-              const SizedBox(height: 12),
-              Text.rich(
-                TextSpan(
-                  text: trl('sign_in.recovery_password'),
-                  style: const TextStyle(
-                    color: AppColors.linkBlue,
-                    decoration: TextDecoration.underline,
-                  ),
-                  recognizer: TapGestureRecognizer()
-                    ..onTap = () {
-                      context.push('/forgot-password');
-                    },
-                ),
+              Text(
+                trl('forgot_password.instructions'),
+                style: const TextStyle(color: AppColors.textSecondary),
               ),
               const SizedBox(height: 24),
-              GreenButton(text: trl('sign_in.headline')),
+              GreenButton(text: trl('forgot_password.submit')),
               const SizedBox(height: 16),
               const DividerWithText(),
               const SizedBox(height: 16),
@@ -109,11 +90,11 @@ class _SignInScreenState extends State<SignInScreen> {
               Center(
                 child: Text.rich(
                   TextSpan(
-                    text: trl('sign_in.not_a_member'),
+                    text: trl('forgot_password.back_to_sign_in'),
                     style: const TextStyle(color: AppColors.textSecondary),
                     children: [
                       TextSpan(
-                        text: trl('sign_in.register_now'),
+                        text: trl('forgot_password.sign_in'),
                         style: const TextStyle(color: AppColors.linkBlue),
                         recognizer: _tapRecognizer,
                       ),
