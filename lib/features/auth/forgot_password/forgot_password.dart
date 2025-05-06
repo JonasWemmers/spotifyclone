@@ -1,10 +1,11 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:go_router/go_router.dart';
 import 'package:spotify_clone/core/constants/constants.dart';
 import 'package:spotify_clone/core/utils/trl.dart';
-import 'package:spotify_clone/features/auth/widgets/shared_auth_widgets.dart'; // oder wo auch immer trl() definiert ist
+import 'package:spotify_clone/features/auth/widgets/shared_auth_widgets.dart';
 
 class ForgotPasswordScreen extends StatefulWidget {
   const ForgotPasswordScreen({super.key});
@@ -15,6 +16,7 @@ class ForgotPasswordScreen extends StatefulWidget {
 
 class _ForgotPasswordScreenState extends State<ForgotPasswordScreen> {
   late TapGestureRecognizer _tapRecognizer;
+  final TextEditingController _emailController = TextEditingController();
 
   @override
   void initState() {
@@ -28,6 +30,7 @@ class _ForgotPasswordScreenState extends State<ForgotPasswordScreen> {
   @override
   void dispose() {
     _tapRecognizer.dispose();
+    _emailController.dispose();
     super.dispose();
   }
 
@@ -74,14 +77,24 @@ class _ForgotPasswordScreenState extends State<ForgotPasswordScreen> {
                 ),
               ),
               const SizedBox(height: 32),
-              const InputField(hint: 'Enter Email'),
+              InputField(
+                hint: 'Enter Email',
+                controller: _emailController,
+              ),
               const SizedBox(height: 16),
               Text(
                 trl('forgot_password.instructions'),
                 style: const TextStyle(color: AppColors.textSecondary),
               ),
               const SizedBox(height: 24),
-              GreenButton(text: trl('forgot_password.submit')),
+              GreenButton(
+                text: trl('forgot_password.submit'),
+                onPressed: () {
+                  if (kDebugMode) {
+                    print('Forgot Password submitted: ${_emailController.text}');
+                  }
+                },
+              ),
               const SizedBox(height: 16),
               const DividerWithText(),
               const SizedBox(height: 16),

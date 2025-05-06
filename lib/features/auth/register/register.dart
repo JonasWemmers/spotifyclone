@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -16,6 +17,9 @@ class RegisterScreen extends StatefulWidget {
 class _RegisterScreenState extends State<RegisterScreen> {
   late TapGestureRecognizer _tapRecognizer;
 
+  final TextEditingController _emailController = TextEditingController();
+  final TextEditingController _passwordController = TextEditingController();
+
   @override
   void initState() {
     super.initState();
@@ -28,7 +32,47 @@ class _RegisterScreenState extends State<RegisterScreen> {
   @override
   void dispose() {
     _tapRecognizer.dispose();
+    _emailController.dispose();
+    _passwordController.dispose();
     super.dispose();
+  }
+
+  Future<void> _register() async {
+    final email = _emailController.text.trim();
+    final password = _passwordController.text.trim();
+
+    if (email.isEmpty || password.isEmpty) {
+      _showError('Bitte alle Felder ausfüllen.');
+      return;
+    }
+
+    if (!_isValidEmail(email)) {
+      _showError('Bitte gib eine gültige E-Mail-Adresse ein.');
+      return;
+    }
+
+    if (password.length < 6) {
+      _showError('Das Passwort muss mindestens 6 Zeichen lang sein.');
+      return;
+    }
+
+    await FirebaseAuth.instance
+        .createUserWithEmailAndPassword(email: email, password: password);
+    debugPrint('Registrierung erfolgreich: $email');
+  }
+
+  bool _isValidEmail(String email) {
+    final emailRegex = RegExp(r'^[^@]+@[^@]+\.[^@]+');
+    return emailRegex.hasMatch(email);
+  }
+
+  void _showError(String message) {
+    ScaffoldMessenger.of(context).showSnackBar(
+      SnackBar(
+        content: Text(message),
+        backgroundColor: Colors.redAccent,
+      ),
+    );
   }
 
   @override
@@ -82,13 +126,17 @@ class _RegisterScreenState extends State<RegisterScreen> {
                 ),
               ),
               const SizedBox(height: 32),
-              const InputField(hint: 'Full Name'),
+              InputField(hint: 'Enter Email', controller: _emailController),
               const SizedBox(height: 16),
-              const InputField(hint: 'Enter Email'),
-              const SizedBox(height: 16),
-              const InputField(hint: 'Password', obscureText: true),
+              InputField(
+                  hint: 'Password',
+                  obscureText: true,
+                  controller: _passwordController),
               const SizedBox(height: 24),
-              GreenButton(text: trl('register.headline')),
+              GreenButton(
+                text: trl('register.headline'),
+                onPressed: _register,
+              ),
               const SizedBox(height: 16),
               const DividerWithText(),
               const SizedBox(height: 16),

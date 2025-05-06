@@ -1,3 +1,4 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -16,6 +17,9 @@ class SignInScreen extends StatefulWidget {
 class _SignInScreenState extends State<SignInScreen> {
   late TapGestureRecognizer _tapRecognizer;
 
+  final TextEditingController _emailController = TextEditingController();
+  final TextEditingController _passwordController = TextEditingController();
+
   @override
   void initState() {
     super.initState();
@@ -28,6 +32,8 @@ class _SignInScreenState extends State<SignInScreen> {
   @override
   void dispose() {
     _tapRecognizer.dispose();
+    _emailController.dispose();
+    _passwordController.dispose();
     super.dispose();
   }
 
@@ -82,9 +88,16 @@ class _SignInScreenState extends State<SignInScreen> {
                 ),
               ),
               const SizedBox(height: 32),
-              const InputField(hint: 'Enter Username Or Email'),
+              InputField(
+                hint: 'Enter Username Or Email',
+                controller: _emailController,
+              ),
               const SizedBox(height: 16),
-              const InputField(hint: 'Password', obscureText: true),
+              InputField(
+                hint: 'Password',
+                obscureText: true,
+                controller: _passwordController,
+              ),
               const SizedBox(height: 12),
               Text.rich(
                 TextSpan(
@@ -100,7 +113,20 @@ class _SignInScreenState extends State<SignInScreen> {
                 ),
               ),
               const SizedBox(height: 24),
-              GreenButton(text: trl('sign_in.headline')),
+              GreenButton(
+                text: trl('sign_in.headline'),
+                onPressed: () {
+                  if (kDebugMode) {
+                    print('Sign In pressed:');
+                  }
+                  if (kDebugMode) {
+                    print('Email: ${_emailController.text}');
+                  }
+                  if (kDebugMode) {
+                    print('Password: ${_passwordController.text}');
+                  }
+                },
+              ),
               const SizedBox(height: 16),
               const DividerWithText(),
               const SizedBox(height: 16),

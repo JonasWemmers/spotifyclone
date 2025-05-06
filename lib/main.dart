@@ -1,3 +1,5 @@
+import 'package:firebase_core/firebase_core.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:spotify_clone/core/utils/trl.dart';
@@ -8,9 +10,20 @@ import 'package:spotify_clone/features/auth/sign_in/sign_in.dart';
 import 'package:spotify_clone/features/onboarding/get_started/get_started_view.dart';
 import 'package:spotify_clone/features/onboarding/choose_mode/choose_mode_view.dart';
 import 'package:spotify_clone/features/onboarding/splash_screen/splash_screen_view.dart';
+import 'package:spotify_clone/firebase_options.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  try {
+    await Firebase.initializeApp(
+      options: DefaultFirebaseOptions.currentPlatform,
+    );
+  } catch (e) {
+    if (kDebugMode) {
+      print("Firebase-Initialisierung fehlgeschlagen: $e");
+    }
+    return;
+  }
   await loadTranslations('de');
   runApp(const MyApp());
 }

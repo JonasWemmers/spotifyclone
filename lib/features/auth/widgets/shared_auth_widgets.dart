@@ -7,15 +7,19 @@ import 'package:spotify_clone/core/constants/constants.dart';
 class InputField extends StatelessWidget {
   final String hint;
   final bool obscureText;
+  final TextEditingController controller;
 
-  const InputField({super.key, 
+  const InputField({
+    super.key,
     required this.hint,
+    required this.controller,
     this.obscureText = false,
   });
 
   @override
   Widget build(BuildContext context) {
     return TextField(
+      controller: controller,
       obscureText: obscureText,
       style: const TextStyle(color: AppColors.textPrimary),
       decoration: InputDecoration(
@@ -41,7 +45,13 @@ class InputField extends StatelessWidget {
 
 class GreenButton extends StatelessWidget {
   final String text;
-  const GreenButton({super.key, required this.text});
+  final VoidCallback onPressed;
+
+  const GreenButton({
+    super.key,
+    required this.text,
+    required this.onPressed,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -55,7 +65,7 @@ class GreenButton extends StatelessWidget {
             borderRadius: BorderRadius.circular(30),
           ),
         ),
-        onPressed: () {},
+        onPressed: onPressed,
         child: Text(
           text,
           style: const TextStyle(
