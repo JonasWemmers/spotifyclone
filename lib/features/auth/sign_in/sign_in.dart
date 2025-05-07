@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
@@ -35,6 +36,47 @@ class _SignInScreenState extends State<SignInScreen> {
     _emailController.dispose();
     _passwordController.dispose();
     super.dispose();
+  }
+
+  Future<void> _signIn() async {
+    final email = _emailController.text.trim();
+    final password = _passwordController.text.trim();
+
+    final auth = FirebaseAuth.instance;
+
+    // Vor dem Login
+    if (kDebugMode) {
+      print('Vor dem Login: ${auth.currentUser}');
+    }
+
+    try {
+      await auth.signInWithEmailAndPassword(email: email, password: password);
+
+      if (kDebugMode) {
+        print('Login erfolgreich: ${auth.currentUser?.email}');
+      }
+
+      if (!mounted) return;
+
+      context.go('/choose-mode');
+    } on FirebaseAuthException catch (e) {
+      if (kDebugMode) {
+        print('Fehler beim Login: ${e.message}');
+      }
+
+      if (!mounted) return;
+
+      _showError(e.message ?? 'Unbekannter Fehler beim Login');
+    }
+  }
+
+  void _showError(String message) {
+    ScaffoldMessenger.of(context).showSnackBar(
+      SnackBar(
+        content: Text(message),
+        backgroundColor: Colors.redAccent,
+      ),
+    );
   }
 
   @override
@@ -115,17 +157,7 @@ class _SignInScreenState extends State<SignInScreen> {
               const SizedBox(height: 24),
               GreenButton(
                 text: trl('sign_in.headline'),
-                onPressed: () {
-                  if (kDebugMode) {
-                    print('Sign In pressed:');
-                  }
-                  if (kDebugMode) {
-                    print('Email: ${_emailController.text}');
-                  }
-                  if (kDebugMode) {
-                    print('Password: ${_passwordController.text}');
-                  }
-                },
+                onPressed: _signIn,
               ),
               const SizedBox(height: 16),
               const DividerWithText(),
