@@ -42,17 +42,17 @@ class _RegisterScreenState extends State<RegisterScreen> {
     final password = _passwordController.text.trim();
 
     if (email.isEmpty || password.isEmpty) {
-      _showError('Bitte alle Felder ausfüllen.');
+      _showError(trl('register.error_fill_all_fields'));
       return;
     }
 
     if (!_isValidEmail(email)) {
-      _showError('Bitte gib eine gültige E-Mail-Adresse ein.');
+      _showError(trl('register.error_invalid_email'));
       return;
     }
 
     if (password.length < 6) {
-      _showError('Das Passwort muss mindestens 6 Zeichen lang sein.');
+      _showError(trl('register.error_short_password'));
       return;
     }
 

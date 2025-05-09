@@ -7,6 +7,7 @@ import 'package:spotify_clone/features/auth/forgot_password/forgot_password.dart
 import 'package:spotify_clone/features/auth/login_register/login_register.dart';
 import 'package:spotify_clone/features/auth/register/register.dart';
 import 'package:spotify_clone/features/auth/sign_in/sign_in.dart';
+import 'package:spotify_clone/features/home/screens/home_view.dart';
 import 'package:spotify_clone/features/onboarding/get_started/get_started_view.dart';
 import 'package:spotify_clone/features/onboarding/choose_mode/choose_mode_view.dart';
 import 'package:spotify_clone/features/onboarding/splash_screen/splash_screen_view.dart';
@@ -57,7 +58,10 @@ final _router = GoRouter(
     ),
     GoRoute(
         path: '/forgot-password',
-        builder: (context, state) => const ForgotPasswordScreen())
+        builder: (context, state) => const ForgotPasswordScreen()),
+    GoRoute(
+        path: '/home',
+        builder: (context, state) => const HomeView())
   ],
 );
 
@@ -74,7 +78,7 @@ class _SplashScreenWrapperState extends State<SplashScreenWrapper> {
     super.initState();
     Future.delayed(const Duration(seconds: 2), () {
       if (!mounted) return;
-      context.go('/get-started');
+      context.go('/home');
     });
   }
 

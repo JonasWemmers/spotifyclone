@@ -1,8 +1,8 @@
-import 'package:flutter/foundation.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:go_router/go_router.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:spotify_clone/core/constants/constants.dart';
 import 'package:spotify_clone/core/utils/trl.dart';
 import 'package:spotify_clone/features/auth/widgets/shared_auth_widgets.dart';
@@ -15,23 +15,51 @@ class ForgotPasswordScreen extends StatefulWidget {
 }
 
 class _ForgotPasswordScreenState extends State<ForgotPasswordScreen> {
-  late TapGestureRecognizer _tapRecognizer;
   final TextEditingController _emailController = TextEditingController();
 
   @override
-  void initState() {
-    super.initState();
-    _tapRecognizer = TapGestureRecognizer()
-      ..onTap = () {
-        context.go('/sign-in');
-      };
-  }
-
-  @override
   void dispose() {
-    _tapRecognizer.dispose();
     _emailController.dispose();
     super.dispose();
+  }
+
+  Future<void> _sendResetEmail() async {
+    final email = _emailController.text.trim();
+
+    if (email.isEmpty) {
+      if (!mounted) return;
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(content: Text('Bitte gib deine E-Mail-Adresse ein.')),
+      );
+      return;
+    }
+
+    try {
+      await FirebaseAuth.instance.sendPasswordResetEmail(email: email);
+
+      if (!mounted) return;
+
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(
+          content: Text('E-Mail zum Zurücksetzen wurde gesendet.'),
+        ),
+      );
+      context.go('/sign-in');
+    } on FirebaseAuthException catch (e) {
+      String message = 'Ein Fehler ist aufgetreten.';
+      if (e.code == 'user-not-found') {
+        message = 'Kein Benutzer mit dieser E-Mail gefunden.';
+      }
+      if (!mounted) return;
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(content: Text(message)),
+      );
+    } catch (e) {
+      if (!mounted) return;
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(content: Text('Unbekannter Fehler.')),
+      );
+    }
   }
 
   @override
@@ -89,11 +117,7 @@ class _ForgotPasswordScreenState extends State<ForgotPasswordScreen> {
               const SizedBox(height: 24),
               GreenButton(
                 text: trl('forgot_password.submit'),
-                onPressed: () {
-                  if (kDebugMode) {
-                    print('Forgot Password submitted: ${_emailController.text}');
-                  }
-                },
+                onPressed: _sendResetEmail,
               ),
               const SizedBox(height: 16),
               const DividerWithText(),
@@ -109,7 +133,10 @@ class _ForgotPasswordScreenState extends State<ForgotPasswordScreen> {
                       TextSpan(
                         text: trl('forgot_password.sign_in'),
                         style: const TextStyle(color: AppColors.linkBlue),
-                        recognizer: _tapRecognizer,
+                        recognizer: TapGestureRecognizer()
+                          ..onTap = () {
+                            context.go('/sign-in');
+                          },
                       ),
                     ],
                   ),

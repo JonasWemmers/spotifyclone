@@ -23,7 +23,11 @@
     "subtitle_1": "If You Need Any Support",
     "subtitle_2": "Click Here",
     "have_account": "Do You Have An Account?",
-    "sign_in": "Sign In"
+    "sign_in": "Sign In",
+    "error_fill_all_fields": "Please fill in all fields.",
+    "error_invalid_email": "Please enter a valid email address.",
+    "error_short_password": "The password must be at least 6 characters long.",
+    "success_registration": "Registration successful"
   },
   "choose_mode": {
     "choose_mode_title": "Choose Mode",
