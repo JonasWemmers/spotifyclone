@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:spotify_clone/widgets/custom_appbar.dart';
 import 'package:spotify_clone/widgets/custom_navbar.dart';
 
 class HomeView extends StatefulWidget {
@@ -22,6 +23,7 @@ class _HomePageState extends State<HomeView> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.black,
+      appBar: const CustomAppBar(isHome: true), // 🔼 AppBar eingebaut
       body: const Center(
         child: Text(
           'Home Page',
