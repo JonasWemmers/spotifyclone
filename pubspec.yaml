@@ -63,8 +63,8 @@ flutter:
   assets:
     - assets/i18n/
     - assets/logos/
-    - assets/cover/
     - assets/artists/
+    - assets/cover/
     - assets/icons/
 
 
